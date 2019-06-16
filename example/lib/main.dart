@@ -1,8 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-//import 'package:flutter/services.dart';
 import 'package:wifi_info_plugin/wifi_info_plugin.dart';
 
 void main() => runApp(MyApp());

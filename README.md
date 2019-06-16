@@ -7,27 +7,67 @@ This Plugin is currently only supports android. IOS implementation to be release
 Import the plugin.
 Listed are all the supported getter methods to query and retrieve Network Information on your android device.
 
-Example instantiation code:
+Below is an Example code of using the plugin in  flutter application to retrieve android only Network info.
+The WifiInfoWrapper class contains methods for some of the most useful Network infomation to be requested.
 
- Future<void> initPlatformState() async {
+```dart
+import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:wifi_info_plugin/wifi_info_plugin.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  WifiInfoWrapper _wifiObject;
+
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
     WifiInfoWrapper wifiObject;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      wifiObject = await  WifiInfoPlugin.wifiDetails; //assign result from async call
+      wifiObject = await  WifiInfoPlugin.wifiDetails;
 
     }
     on PlatformException{
 
-      // handle exception
     }
     if (!mounted) return;
 
     setState(() {
 
-      _wifiObject = wifiObject;  // set returned native code data to widget local state.
+      _wifiObject = wifiObject;
     });
   }
 
+  @override
+  Widget build(BuildContext context) {
+   String ipAddress = _wifiObject!=null?_wifiObject.ipAddress.toString():"ip";
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: Center(
+          child: Text('Running on:'+ ipAddress),
+        ),
+      ),
+    );
+  }
+}
+```
   returns ipv4 address of device
   <String> ipAddress
 
@@ -66,8 +106,8 @@ Example instantiation code:
 
    returns true/false determining if the connection is a hidden Ssid
    <bool> get isHiddenSSid
-   
-   
+
+
 
 
 

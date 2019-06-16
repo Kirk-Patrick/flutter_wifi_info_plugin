@@ -1,8 +1,7 @@
 name: wifi_info_plugin
 description: Wifi info wrapper android plugin
-version: 0.0.1
-author: Kirk-Patrick Brown
-email: vtechjm@gmail.com
+version: 1.0.0
+author: Kirk-Patrick Brown <vtechjm@gmail.com>
 homepage: https://github.com/VTechJm
 
 environment:
