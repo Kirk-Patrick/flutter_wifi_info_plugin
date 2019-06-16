@@ -56,7 +56,7 @@ public class WifiInfoPlugin implements MethodCallHandler {
                 data.put("ISHIDDEDSSID", wifiWrapper.getHiddenSSID());
                 data.put("ROUTERIP", wifiWrapper.getRouterIp());
                 data.put("DNS1", wifiWrapper.getDns1Ip());
-                data.put("DNS2",wifiWrapper.getDns2Ip());
+                data.put("DNS2", wifiWrapper.getDns2Ip());
 
                 result.success(data);
 

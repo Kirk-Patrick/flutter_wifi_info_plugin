@@ -20,56 +20,52 @@ public class WifiInfoWrapper {
 
     private Context context;
     private WifiInfo wifiInfo;
-    public  WifiInfoWrapper(Context context)
-    {
 
-        this.context =context;
+    public WifiInfoWrapper(Context context) {
+
+        this.context = context;
         init(context);
     }
 
 
-    private Boolean init(Context context)
-    {
+    private Boolean init(Context context) {
 
-        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if (networkInfo == null) {
             return false;
         }
         if (networkInfo.isConnected()) {
-            final WifiManager wifiManager = (WifiManager)context.getApplicationContext().getSystemService(WIFI_SERVICE);
+            final WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(WIFI_SERVICE);
             wifiInfo = wifiManager.getConnectionInfo();
             return true;
 
-        }
-        else
-        {
-            return  false;
+        } else {
+            return false;
         }
 
 
     }
 
 
-    public String getRouterIp()
-    {
-        WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+    public String getRouterIp() {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         DhcpInfo dhcp = wifiManager.getDhcpInfo();
         int ip = dhcp.gateway;
         String routerIp = formatIP(ip);
         return routerIp;
     }
-    public String getDns1Ip()
-    {
-        WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+
+    public String getDns1Ip() {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         DhcpInfo dhcp = wifiManager.getDhcpInfo();
         int ip = dhcp.dns1;
         String routerIp = formatIP(ip);
         return routerIp;
     }
-    public String getDns2Ip()
-    {
-        WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+
+    public String getDns2Ip() {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         DhcpInfo dhcp = wifiManager.getDhcpInfo();
         int ip = dhcp.dns2;
         String routerIp = formatIP(ip);
@@ -77,55 +73,50 @@ public class WifiInfoWrapper {
     }
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    String getIpAddress()
-    {
+    String getIpAddress() {
         WifiManager wm = (WifiManager) context.getSystemService(WIFI_SERVICE);
         String ip = formatIP(wm.getConnectionInfo().getIpAddress());
         return ip;
     }
 
-    String getBssId()
-    {
+    String getBssId() {
         return wifiInfo.getBSSID();
     }
 
-    String getSSID()
-    {
+    String getSSID() {
         return wifiInfo.getSSID();
     }
 
-    public boolean getHiddenSSID ()
-    {
+    public boolean getHiddenSSID() {
         return wifiInfo.getHiddenSSID();
     }
-    int getLinkSpeedMbps()
-    {
+
+    int getLinkSpeedMbps() {
         return wifiInfo.getLinkSpeed();
     }
-    int getFrequency(){
+
+    int getFrequency() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return wifiInfo.getFrequency();
-        }
-        else{
+        } else {
             return 001;
         }
     }
 
-    int getSignalStrength()
-    {
+    int getSignalStrength() {
 
-        int level =WifiManager.calculateSignalLevel(wifiInfo.getRssi(),10);
+        int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), 10);
         int percentage = (int) ((level / 10.0) * 100);
         return level;
 
     }
-    int getNetworkId()
-    {
+
+    int getNetworkId() {
         return wifiInfo.getNetworkId();
     }
+
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-    String getMacAdress()
-    {
+    String getMacAdress() {
         try {
             List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface nif : all) {
@@ -154,10 +145,9 @@ public class WifiInfoWrapper {
 
 //        return wifiInfo.getMacAddress();
 
-    String getNetworkConnectionType()
-    {
-        String networkType ="unknown";
-        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    String getNetworkConnectionType() {
+        String networkType = "unknown";
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork != null) {
             if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
@@ -172,6 +162,7 @@ public class WifiInfoWrapper {
         return networkType;
 
     }
+
     private String formatIP(int ip) {
         return String.format(
                 "%d.%d.%d.%d",
