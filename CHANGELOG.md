@@ -1,3 +1,7 @@
+## 1.0.3
+
+* add method documentation
+
 ## 1.0.2
 
 * removed unused imports
