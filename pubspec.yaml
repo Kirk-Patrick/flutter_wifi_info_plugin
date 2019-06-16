@@ -2,7 +2,7 @@ name: wifi_info_plugin
 description: Wifi info wrapper android plugin,plugin serves as a
   bridge from flutter currently to android native code to retrieve Network info from example device Ip and Mac Address.
   IOS implemetation will be realeased soon.
-version: 1.0.1
+version: 1.0.2
 author: Kirk-Patrick Brown <vtechjm@gmail.com>
 homepage: https://github.com/VTechJm
 
