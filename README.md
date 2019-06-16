@@ -68,44 +68,21 @@ class _MyAppState extends State<MyApp> {
   }
 }
 ```
-  returns ipv4 address of device
-  <String> ipAddress
+Below are valid getters on the WifiWrapper Class at instantiation
 
-   return the ipv4 address of the router for  a connection
-  <String> routerIp
-
-   returns the DNS server1 IpAddress
-  <String> dns1
-
-   returns the DNS server2 IpAddress
-  <String> dns2
-
-   returns the(BSSID) MAC address of the wireless access point
-  <String>bssId
-
-   returns the(SSID) Network Name
-  <String> ssid
-
-   returns mac adress of device
-  <String> macAddress
-
-   returns the current link speed
-  <int>linkSpeed
-
-   returns current signal strength 10 being the maximum
-  <int> signalStrength
-
-  returns current frequency in MHZ
-  <int> frequency
-
-  returns unique small integer ID for the connected network
-  <int> networkId
-
-   returns  device connection Type Wifi or Mobile
-   <String> connectionType
-
-   returns true/false determining if the connection is a hidden Ssid
-   <bool> get isHiddenSSid
+  * ipAddress
+  * routerIp
+  * dns1
+  * dns2
+  * bssId
+  * ssid
+  * macAddress
+  * linkSpeed
+  * signalStrength
+  * frequency
+  * networkId
+  * connectionType
+  * isHiddenSSid
 
 
 
