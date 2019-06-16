@@ -1,3 +1,10 @@
+## 1.0.5
+
+* update reop location
+
+## 1.0.4
+
+* update description
 ## 1.0.3
 
 * add method documentation
