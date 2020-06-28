@@ -4,11 +4,9 @@ Wifi info wrapper android plugin
 
 ## Getting Started
 This Plugin currently only supports android. IOS implementation to be release soon.
-Import the plugin.
-Listed are all the supported getter methods to query and retrieve Network Information on your android device.
+Listed are all the supported getter methods to retrieve Network Information on your android device.
 
-Below is an Example code of using the plugin in  flutter application to retrieve android only Network info.
-The WifiInfoWrapper class contains methods for some of the most useful Network infomation to be requested.
+Below code exhibits usage of  the plugin in  a flutter application to retrieve Network info.
 
 ```dart
 import 'package:flutter/services.dart';
@@ -85,7 +83,7 @@ Below are valid getters on the WifiWrapper Class at instantiation
   * isHiddenSSid
 
 
-  <p>To help support this package donations are welcome here</p>
+<p>To help support this package donations are welcome here</p>
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=28X789TZQ7AX8)
 
