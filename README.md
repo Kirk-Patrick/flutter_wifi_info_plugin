@@ -3,7 +3,7 @@
 Wifi info wrapper android plugin
 
 ## Getting Started
-This Plugin is currently only supports android. IOS implementation to be release soon.
+This Plugin currently only supports android. IOS implementation to be release soon.
 Import the plugin.
 Listed are all the supported getter methods to query and retrieve Network Information on your android device.
 
