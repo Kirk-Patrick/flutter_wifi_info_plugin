@@ -87,6 +87,7 @@ Below are valid getters on the WifiWrapper Class at instantiation
 
   <p> Thanks for checking out my package to help support maintenance for this package,donations would be most welcomed and can be made below here</p>
   [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=28X789TZQ7AX8)
+  [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RGQ8NSYPA59FL)
 
 
 
