@@ -88,7 +88,6 @@ Below are valid getters on the WifiWrapper Class at instantiation
   <p>To help support this package donations are welcome here</p>
 
 [
-![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=28X789TZQ7AX8)
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick" />
