@@ -1,3 +1,6 @@
+## 1.1.2
+
+* update Read me
 ## 1.1.0
 
 * update Read me
