@@ -84,7 +84,7 @@ Below are valid getters on the WifiWrapper Class at instantiation
   * connectionType
   * isHiddenSSid
 
-  ```html
+
   <p>To help support this package donations are welcome here</p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick" />
@@ -93,7 +93,6 @@ Below are valid getters on the WifiWrapper Class at instantiation
 <img alt="" border="0" src="https://www.paypal.com/en_JM/i/scr/pixel.gif" width="1" height="1" />
 </form>
 
-  ```
 
 
 
