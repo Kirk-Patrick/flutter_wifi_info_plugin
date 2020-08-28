@@ -1,3 +1,6 @@
+## 1.1.6
+
+* Move to Android embedding v2
 ## 1.1.5
 
 * update Read me
