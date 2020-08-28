@@ -2,72 +2,55 @@ package com.vtechjm.wifi_info_plugin;
 
 
 import android.content.Context;
-import android.content.ContextWrapper;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import io.flutter.plugin.common.MethodCall;
+import androidx.annotation.NonNull;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
+import io.flutter.plugin.common.PluginRegistry.ViewDestroyListener;
+import io.flutter.view.FlutterNativeView;
 
 /**
  * WifiInfoPlugin
  */
-public class WifiInfoPlugin implements MethodCallHandler {
-    /**
-     * Plugin registration.
-     */
-    static Context context;
+public class WifiInfoPlugin implements FlutterPlugin {
+
+    private MethodChannel channel;
 
     public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "wifi_info_plugin");
-        context = registrar.context();
-        channel.setMethodCallHandler(new WifiInfoPlugin());
+        final WifiInfoPlugin plugin = new WifiInfoPlugin();
+        plugin.startListening(registrar.context(), registrar.messenger());
+
+        registrar.addViewDestroyListener(new ViewDestroyListener() {
+            @Override
+            public boolean onViewDestroy(FlutterNativeView view) {
+                plugin.stopListening();
+
+                return false;
+            }
+        });
+    }
+
+
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        startListening(binding.getApplicationContext(), binding.getBinaryMessenger());
     }
 
     @Override
-    public void onMethodCall(MethodCall call, Result result) {
-        WifiInfoWrapper wifiWrapper = new WifiInfoWrapper(context);
-        switch (call.method) {
-            case "getPlatformVersion": {
-                result.success("An " + android.os.Build.VERSION.RELEASE);
-            }
-            break;
-            case "getBSSID": {
-//        String ss = wifiWrapper.getSSID();
-//                result.success();
-
-            }
-            case "getWifiDetails": {
-
-                Map<String, Object> data = new HashMap();
-                data.put("SSID", wifiWrapper.getSSID());
-                data.put("BSSID", wifiWrapper.getBssId());
-                data.put("IP", wifiWrapper.getIpAddress());
-                data.put("MACADDRESS", wifiWrapper.getMacAdress());
-                data.put("LINKSPEED", wifiWrapper.getLinkSpeedMbps());
-                data.put("SIGNALSTRENGTH", wifiWrapper.getSignalStrength());
-                data.put("FREQUENCY", wifiWrapper.getFrequency());
-                data.put("NETWORKID", wifiWrapper.getNetworkId());
-                data.put("CONNECTIONTYPE", wifiWrapper.getNetworkConnectionType());
-                data.put("ISHIDDEDSSID", wifiWrapper.getHiddenSSID());
-                data.put("ROUTERIP", wifiWrapper.getRouterIp());
-                data.put("DNS1", wifiWrapper.getDns1Ip());
-                data.put("DNS2", wifiWrapper.getDns2Ip());
-
-                result.success(data);
-
-
-            }
-            break;
-            default:
-                result.notImplemented();
-
-        }
-
-
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        stopListening();
     }
+
+    private void startListening(Context context, BinaryMessenger messenger) {
+        channel = new MethodChannel(messenger, "wifi_info_plugin");
+        channel.setMethodCallHandler(new MethodCallHandlerImpl(context));
+    }
+
+    private void stopListening() {
+        channel.setMethodCallHandler(null);
+        channel = null;
+    }
+
+
 }
