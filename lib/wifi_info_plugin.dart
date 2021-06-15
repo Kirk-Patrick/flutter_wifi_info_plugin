@@ -39,7 +39,7 @@ class WifiInfoWrapper {
 
   WifiInfoWrapper();
 
-  WifiInfoWrapper.withMap(Map<dynamic, dynamic> nativeInfo) {
+  WifiInfoWrapper.withMap(Map<dynamic, dynamic>? nativeInfo) {
     if (nativeInfo != null) {
       this._bssid = nativeInfo["BSSID"];
       this._ssid = nativeInfo["SSID"];
