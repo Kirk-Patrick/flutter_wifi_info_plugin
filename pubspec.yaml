@@ -6,7 +6,7 @@ author: Kirk-Patrick Brown <vtechjm@gmail.com>
 homepage: https://github.com/VTechJm/wifi_info_plugin
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
