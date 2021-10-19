@@ -149,7 +149,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  wifi_info_plugin:
+  wifi_info_plugin_plus:
     dependency: "direct dev"
     description:
       path: ".."

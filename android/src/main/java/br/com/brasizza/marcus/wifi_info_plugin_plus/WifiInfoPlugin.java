@@ -1,4 +1,4 @@
-package com.vtechjm.wifi_info_plugin;
+package br.com.brasizza.marcus.wifi_info_plugin_plus;
 
 
 import android.content.Context;

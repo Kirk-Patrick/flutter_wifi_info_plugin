@@ -1,4 +1,4 @@
-group 'com.vtechjm.wifi_info_plugin'
+group 'br.com.brasizza.marcus.wifi_info_plugin_plus'
 version '1.0-SNAPSHOT'
 
 buildscript {

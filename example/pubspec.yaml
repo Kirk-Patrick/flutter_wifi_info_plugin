@@ -17,7 +17,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  wifi_info_plugin:
+  wifi_info_plugin_plus:
     path: ../
 
 # For information on the generic Dart part of this file, see the
