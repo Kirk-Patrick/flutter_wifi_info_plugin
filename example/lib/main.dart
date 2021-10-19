@@ -38,17 +38,22 @@ class _MyAppState extends State<MyApp> {
     String ipAddress = _wifiObject != null ? _wifiObject!.ipAddress.toString() : "ip";
 
     String macAddress = _wifiObject != null ? _wifiObject!.macAddress.toString() : 'mac';
+    String connectionType = _wifiObject != null ? _wifiObject!.connectionType : 'unknown';
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Column(children: [
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Center(
             child: Text('Running on IP:' + ipAddress),
           ),
           Center(
             child: Text('Running on Mac:' + macAddress),
+          ),
+          Center(
+            child: Text('Connection type:' + connectionType),
           ),
         ]),
       ),
