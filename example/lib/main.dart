@@ -35,10 +35,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    String ipAddress = _wifiObject != null ? _wifiObject!.ipAddress.toString() : "ip";
+    String ipAddress = _wifiObject != null ? _wifiObject!.ipAddress.toString() : "...";
 
-    String macAddress = _wifiObject != null ? _wifiObject!.macAddress.toString() : 'mac';
-    String connectionType = _wifiObject != null ? _wifiObject!.connectionType : 'unknown';
+    String macAddress = _wifiObject != null ? _wifiObject!.macAddress.toString() : '...';
+    String connectionType = _wifiObject != null ? _wifiObject!.connectionType.toString() : 'unknown';
 
     return MaterialApp(
       home: Scaffold(
