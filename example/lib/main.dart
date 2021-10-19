@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  WifiInfoWrapper _wifiObject;
+  WifiInfoWrapper? _wifiObject;
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    WifiInfoWrapper wifiObject;
+    WifiInfoWrapper? wifiObject;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       wifiObject = await WifiInfoPlugin.wifiDetails;
@@ -35,16 +35,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    String ipAddress =
-        _wifiObject != null ? _wifiObject.ipAddress.toString() : "ip";
+    String ipAddress = _wifiObject != null ? _wifiObject!.ipAddress.toString() : "ip";
+
+    String macAddress = _wifiObject != null ? _wifiObject!.macAddress.toString() : 'mac';
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on:' + ipAddress),
-        ),
+        body: Column(children: [
+          Center(
+            child: Text('Running on IP:' + ipAddress),
+          ),
+          Center(
+            child: Text('Running on Mac:' + macAddress),
+          ),
+        ]),
       ),
     );
   }

@@ -23,6 +23,9 @@
 .dart_tool/
 .flutter-plugins
 .packages
+.tool-versions
+.flutter-plugins-dependencies
+flutter_export_environment.sh
 .pub-cache/
 .pub/
 /build/

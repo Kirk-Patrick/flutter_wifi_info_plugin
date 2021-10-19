@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.text.format.Formatter;
+import android.net.NetworkCapabilities;
 
 import java.net.NetworkInterface;
 import java.util.Collections;
@@ -128,8 +128,13 @@ public class WifiInfoWrapper {
                 }
 
                 StringBuilder res1 = new StringBuilder();
-                for (byte b : macBytes) {
-                    res1.append(Integer.toHexString(b & 0xFF) + ":");
+                 for (byte b : macBytes) {
+                    res1.append(
+                        String.format(
+                            "%1$2s",
+                            Integer.toHexString(b & 0xFF)
+                        ).replace(' ','0') + ":"
+                    );
                 }
 
                 if (res1.length() > 0) {
@@ -145,23 +150,56 @@ public class WifiInfoWrapper {
 
 //        return wifiInfo.getMacAddress();
 
-    String getNetworkConnectionType() {
-        String networkType = "unknown";
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                networkType = "Wifi";
-                return networkType;
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                networkType = "Mobile data";
-                return networkType;
+
+   
+
+
+
+
+
+public String getNetworkConnectionType() {
+    String                         result = "unknown";
+
+    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (cm != null) {
+            NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    result = "Mobile data";
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    result = "WIFI";
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
+                    result = "VPN";
+                }
             }
+        }else{
+                        result = "unknown";
+
         }
-
-        return networkType;
-
+    } else {
+        if (cm != null) {
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            if (activeNetwork != null) {
+                // connected to the internet
+                if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                    result = "Mobile data";
+                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                    result = "WIFI";
+                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_VPN) {
+                    result = "VPN";
+                }
+            }
+            result = "unknown";
+        }
     }
+
+        return result;
+
+}
+
+
+
 
     private String formatIP(int ip) {
         return String.format(

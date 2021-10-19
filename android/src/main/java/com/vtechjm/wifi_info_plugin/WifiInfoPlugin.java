@@ -2,31 +2,41 @@ package com.vtechjm.wifi_info_plugin;
 
 
 import android.content.Context;
-import android.content.ContextWrapper;
+// import android.content.ContextWrapper;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * WifiInfoPlugin
  */
-public class WifiInfoPlugin implements MethodCallHandler {
+public class WifiInfoPlugin implements MethodCallHandler,FlutterPlugin {
     /**
      * Plugin registration.
      */
-    static Context context;
 
-    public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "wifi_info_plugin");
-        context = registrar.context();
-        channel.setMethodCallHandler(new WifiInfoPlugin());
+    private Context  context;
+
+  private MethodChannel channel;
+
+
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "wifi_info_plugin");
+        context = flutterPluginBinding.getApplicationContext();
+        channel.setMethodCallHandler(this);
     }
+
+
+
 
     @Override
     public void onMethodCall(MethodCall call, Result result) {
@@ -43,7 +53,7 @@ public class WifiInfoPlugin implements MethodCallHandler {
             }
             case "getWifiDetails": {
 
-                Map<String, Object> data = new HashMap();
+                Map<String, Object> data = new HashMap<String, Object>();
                 data.put("SSID", wifiWrapper.getSSID());
                 data.put("BSSID", wifiWrapper.getBssId());
                 data.put("IP", wifiWrapper.getIpAddress());
@@ -70,4 +80,9 @@ public class WifiInfoPlugin implements MethodCallHandler {
 
 
     }
+
+    @Override
+  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+    channel.setMethodCallHandler(null);
+  }
 }
