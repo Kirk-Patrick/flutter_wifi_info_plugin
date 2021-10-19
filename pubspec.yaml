@@ -24,5 +24,4 @@ flutter:
       android:
         package: br.com.brasizza.marcus.wifi_info_plugin_plus
         pluginClass: WifiInfoPlugin
-      ios:
-        pluginClass: WifiInfoPlugin
+     
