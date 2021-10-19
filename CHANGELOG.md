@@ -1,4 +1,7 @@
 ## 2.0.0
+Update the package using v2 package creation and null-safety and README UPDATE!
+
+## 2.0.0
 Update the package using v2 package creation and null-safety
 
 ## 1.1.5
