@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 class WifiInfoPlugin {
   static const MethodChannel _channel = const MethodChannel('wifi_info_plugin');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
+  static Future<String?> get platformVersion async {
+    final String? version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
 
@@ -13,7 +13,7 @@ class WifiInfoPlugin {
   /// Wifi details  represents a case for a method that can be called in the method handler
   ///
   static Future<WifiInfoWrapper> get wifiDetails async {
-    final Map<dynamic, dynamic> data =
+    final Map<dynamic, dynamic>? data =
         await _channel.invokeMethod('getWifiDetails');
 
     WifiInfoWrapper wifiWrapper = new WifiInfoWrapper.withMap(data);
@@ -23,23 +23,23 @@ class WifiInfoPlugin {
 
 /// represents a wrapper object for mainly android wifi info class
 class WifiInfoWrapper {
-  String _bssid = "missing";
-  String _ssid = "missing";
-  String _ip = "missing";
-  String _macAddress = "missing";
-  int _linkSpeed = 0;
-  int _singalStrength = 0;
-  int _frequency = 0;
-  int _networkid = 0;
-  String _connectionType = "missing";
-  bool _isHiddenSSID = false;
-  String _routerIp = "unknown";
-  String _dns1Ip = "";
-  String _dns2Ip = "";
+  String? _bssid = "missing";
+  String? _ssid = "missing";
+  String? _ip = "missing";
+  String? _macAddress = "missing";
+  int? _linkSpeed = 0;
+  int? _singalStrength = 0;
+  int? _frequency = 0;
+  int? _networkid = 0;
+  String? _connectionType = "missing";
+  bool? _isHiddenSSID = false;
+  String? _routerIp = "unknown";
+  String? _dns1Ip = "";
+  String? _dns2Ip = "";
 
   WifiInfoWrapper();
 
-  WifiInfoWrapper.withMap(Map<dynamic, dynamic> nativeInfo) {
+  WifiInfoWrapper.withMap(Map<dynamic, dynamic>? nativeInfo) {
     if (nativeInfo != null) {
       this._bssid = nativeInfo["BSSID"];
       this._ssid = nativeInfo["SSID"];
@@ -58,68 +58,68 @@ class WifiInfoWrapper {
   }
 
   /// IPV4 address for connected device
-  String get ipAddress {
+  String? get ipAddress {
     return this._ip;
   }
 
   /// IPV4 address for router of the connected device
-  String get routerIp {
+  String? get routerIp {
     return this._routerIp;
   }
 
   /// IPV4 address of the dns1 server
-  String get dns1 {
+  String? get dns1 {
     return this._dns1Ip;
   }
 
   /// IPV4 address of the dns2 server
-  String get dns2 {
+  String? get dns2 {
     return this._dns2Ip;
   }
 
   /// returns BSSID
-  String get bssId {
+  String? get bssId {
     return this._bssid;
   }
 
   /// returns the Name of the Network
-  String get ssid {
+  String? get ssid {
     return this._ssid;
   }
 
   ///returns device Mac Address
-  String get macAddress {
+  String? get macAddress {
     return this._macAddress;
   }
 
   /// returns current link Speed
-  int get linkSpeed {
+  int? get linkSpeed {
     return this._linkSpeed;
   }
 
   /// returns current signalStrength
-  int get signalStrength {
+  int? get signalStrength {
     return this._singalStrength;
   }
 
   /// returns current frequency
-  int get frequency {
+  int? get frequency {
     return this._frequency;
   }
 
   /// returns current Id of your network
 
-  int get networkId {
+  int? get networkId {
     return this._networkid;
   }
 
   /// returns connection type eg wifi or mobile
-  String get connectionType {
+  String? get connectionType {
     return this._connectionType;
   }
 
   /// return boolean for  ssid  is hidden
-  bool get isHiddenSSid {
+  bool? get isHiddenSSid {
     return this._isHiddenSSID;
   }
 }
